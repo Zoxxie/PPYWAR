@@ -810,11 +810,7 @@ function library:loadconfig(cfg)
 		end
 	end
 end
-				end
-			end
-		end
-	end
-end
+
 --
 function library:settheme(theme,color)
 	local window = self
