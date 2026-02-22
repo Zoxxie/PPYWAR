@@ -4614,16 +4614,22 @@ function sections:configloader(props)
 	end)
 	--
 	load[3].MouseButton1Down:Connect(function()
-		if not selected then return end
-		self.library:loadconfig(folder..selected.name..".cfg")
+		if type(selected) ~= "table" or not selected.name then return end
+		local path = folder..selected.name..".cfg"
+		if isfile(path) then
+			self.library:loadconfig(path)
+		end
 		load[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
 		load[2].BorderColor3 = Color3.fromRGB(12,12,12)
 	end)
 	--
 	delete[3].MouseButton1Down:Connect(function()
-		if not selected then return end
-		delfile(folder..selected.name..".cfg")
+		if type(selected) ~= "table" or not selected.name then return end
+		local path = folder..selected.name..".cfg"
+		if isfile(path) then
+			delfile(path)
+		end
 		delete[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
 		delete[2].BorderColor3 = Color3.fromRGB(12,12,12)
@@ -4632,7 +4638,7 @@ function sections:configloader(props)
 	end)
 	--
 	save[3].MouseButton1Down:Connect(function()
-		if not selected then return end
+		if type(selected) ~= "table" or not selected.name then return end
 		writefile(folder..selected.name..".cfg", self.library:saveconfig())
 		save[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
@@ -4642,7 +4648,7 @@ function sections:configloader(props)
 	end)
 	--
 	create[3].MouseButton1Down:Connect(function()
-		if not currentname then return end
+		if type(currentname) ~= "string" or currentname == "" then return end
 		writefile(folder..currentname..".cfg", self.library:saveconfig())
 		create[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
