@@ -4146,7 +4146,7 @@ function sections:configloader(props)
 		"Frame",
 		{
 			BackgroundTransparency = 1,
-			Size = UDim2.new(1,0,0,222),
+			Size = UDim2.new(1,0,0,282),
 			Parent = self.content
 		}
 	)
@@ -4215,7 +4215,7 @@ function sections:configloader(props)
 			BackgroundTransparency = 1,
 			BorderSizePixel = 0,
 			Size = UDim2.new(1,0,0,64),
-			Position = UDim2.new(0,0,0,150),
+			Position = UDim2.new(0,0,0,210),
 			Parent = outline
 		}
 	)
@@ -4228,7 +4228,7 @@ function sections:configloader(props)
 			BorderColor3 = Color3.fromRGB(12, 12, 12),
 			BorderMode = "Inset",
 			BorderSizePixel = 1,
-			Size = UDim2.new(1,-10,0,120),
+			Size = UDim2.new(1,-10,0,180),
 			Position = UDim2.new(0.5,0,0,25),
 			Parent = outline
 		}
@@ -4614,6 +4614,7 @@ function sections:configloader(props)
 	end)
 	--
 	load[3].MouseButton1Down:Connect(function()
+		if not selected then return end
 		self.library:loadconfig(folder..selected.name..".cfg")
 		load[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
@@ -4621,6 +4622,7 @@ function sections:configloader(props)
 	end)
 	--
 	delete[3].MouseButton1Down:Connect(function()
+		if not selected then return end
 		delfile(folder..selected.name..".cfg")
 		delete[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
@@ -4630,6 +4632,7 @@ function sections:configloader(props)
 	end)
 	--
 	save[3].MouseButton1Down:Connect(function()
+		if not selected then return end
 		writefile(folder..selected.name..".cfg", self.library:saveconfig())
 		save[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
@@ -4639,6 +4642,7 @@ function sections:configloader(props)
 	end)
 	--
 	create[3].MouseButton1Down:Connect(function()
+		if not currentname then return end
 		writefile(folder..currentname..".cfg", self.library:saveconfig())
 		create[2].BorderColor3 = self.library.theme.accent
 		wait(0.05)
